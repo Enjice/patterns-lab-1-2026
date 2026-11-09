@@ -1,12 +1,17 @@
-from clocks import AnalogClock
+from datetime import datetime
 
+from facades.clock_facade import ClockFacade
 
-def main() -> None:
-    clock = AnalogClock()
-    print("Исходный объект AnalogClock создан.")
-    print(f"Дата по умолчанию: {clock.get_year():04d}-{clock.get_month():02d}-{clock.get_day():02d}")
-    print("После выполнения задания клиентский код должен работать через ClockFacade.")
+clock = ClockFacade()
 
+clock.set_date_time(datetime(2026, 9, 1, 12, 18, 26))
 
-if __name__ == "__main__":
-    main()
+print("Какая-то дата и время:")
+print(clock.get_date_time())
+
+print("\nФорматированное время:")
+print(clock.get_formatted_time())
+
+print("\nИстория изменений:")
+for date in clock.get_history():
+    print(date)
